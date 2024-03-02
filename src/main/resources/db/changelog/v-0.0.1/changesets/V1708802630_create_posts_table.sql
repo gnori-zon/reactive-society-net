@@ -1,10 +1,12 @@
 -- liquibase formatted sql
--- changeset gnori:V1708802620_create_persons_table
+-- changeset gnori:V1708802630_create_posts_table
 
-CREATE TABLE persons
+CREATE TABLE posts
 (
     id         UUID PRIMARY KEY                  DEFAULT gen_random_uuid(),
-    username   VARCHAR(200)             NOT NULL UNIQUE,
+    title      VARCHAR(300),
+    content    TEXT,
+    author_id  UUID                     NOT NULL REFERENCES persons (id),
     created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT now(),
     updated_at TIMESTAMP WITH TIME ZONE
 )
